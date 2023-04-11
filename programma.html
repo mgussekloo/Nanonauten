@@ -1,38 +1,47 @@
-‘<!DOCTYPE html>’
+<!DOCTYPE html>
 <html>
 <head> 
 <title>Nanonauten in actie</title>
 </head>
 <body>
+
 <script>
+// maak een canvas object
 var canvas = document.createElement('canvas');
 canvas.width = 800;
 canvas.height = 600;
+
+// zet canvas object in de html
 document.body.appendChild(canvas);
+
+// pak de 2d context
 var c = canvas.getContext('2d');
+
+// afbeelding inladen
 var image = new Image();
-image .src = 'nanonaut.png';
+image.src = 'nanonaut.png';
 
 var x = 0;
 var y = 40;
 
+// tijdens de 'load' gebeurtenis op het window-object, voer de functie start uit
 window.addEventListener('load', start);
 
 function start() {
-window.requestAnimationFrame(loop);
+	// zeg tegen het window dat hij bij de eerstvolgende schermverversing ook de functie lus uitvoert.
+	window.requestAnimationFrame(lus);
 }
 
+// in deze functie tekenen we de afbeelding op positie x,y
 function lus() {
-c.drawImage(image, x, y);
-x=x+1;
+	c.drawImage(image, x, y);
+	// en we updaten x
+	x=x+1;
 
-window.requestAnimationFrame(lus);
+	// zeg tegen het window dat hij bij de eerstvolgende schermverversing ook de functie lus uitvoert.
+	window.requestAnimationFrame(lus);
 }
-
-window.requestAnimationFrame(loop);
-}
-
-document.body.appendChild(canvas);
 </script>
+
 </body>
 </html>
